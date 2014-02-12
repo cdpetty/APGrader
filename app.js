@@ -41,7 +41,17 @@ app.all('/', function(req,res){
     }
     res.render('index');
 });
-app.get('/users', user.list);
+app.get('/grade', function(req,res){
+    exec('javac /tmp/Hello.java', function(err, stdout, stderr){
+        if(err) res.send(err);
+        else{
+            exec('java -cp /tmp Hello', function(err, stdout, stderr){
+                if (err) res.send("Error 2: " + err);
+                else res.send("STDOUT: " + stdout + "asdf" + stderr);
+            });
+        }
+    });
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -29,28 +29,30 @@ if ('development' == app.get('env')) {
 }
 
 app.all('/', function(req,res){
-    console.log("files: " + req.files);
     if (req.files.file){
-        console.log("file recieved");
+        var cfilename = req.files.file.name
+        var rfilename = cfilename.substring(0, cfilename.indexOf("."));
         fs.readFile(req.files.file.path, function(err, data){
             fs.writeFile('/tmp/' + req.files.file.name, data, function(err){
-                if (err) console.log("Error writing file: " + err);
-                else console.log("saved file success");
+                if (err) res.send("Error writing file: " + err);
+                else {
+                    exec('javac /tmp/' + cfilename, function(err, stdout, stderr){
+                        if(err) res.send(err);
+                        else{
+                            exec('java -cp /tmp ' + rfilename, function(err, stdout, stderr){
+                                if (err) res.send("Error 2: " + err);
+                                else res.send("STDOUT: " + stdout + "<br>STDERR: " + stderr);
+                            });
+                        }
+                    });
+                }
             });
         });
     }
-    res.render('index');
+    else res.render('index');
 });
 app.get('/grade', function(req,res){
-    exec('javac /tmp/Hello.java', function(err, stdout, stderr){
-        if(err) res.send(err);
-        else{
-            exec('java -cp /tmp Hello', function(err, stdout, stderr){
-                if (err) res.send("Error 2: " + err);
-                else res.send("STDOUT: " + stdout + "asdf" + stderr);
-            });
-        }
-    });
+
 });
 
 http.createServer(app).listen(app.get('port'), function(){

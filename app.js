@@ -3,14 +3,15 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
-var fs = require('fs');
-var exec = require('child_process').exec
-var app = express();
+var express = require('express'),
+    routes = require('./routes'),
+    user = require('./routes/user'),
+    http = require('http'),
+    path = require('path'),
+    fs = require('fs'),
+    exec = require('child_process').exec,
+    grader = require('./grader/grader'),
+    app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -29,27 +30,15 @@ if ('development' == app.get('env')) {
 }
 
 app.all('/', function(req,res){
-    if (req.files.file){
-        var cfilename = req.files.file.name
-        var rfilename = cfilename.substring(0, cfilename.indexOf("."));
-        fs.readFile(req.files.file.path, function(err, data){
-            fs.writeFile('/tmp/' + req.files.file.name, data, function(err){
-                if (err) res.send("Error writing file: " + err);
-                else {
-                    exec('javac /tmp/' + cfilename, function(err, stdout, stderr){
-                        if(err) res.send(err);
-                        else{
-                            exec('java -cp /tmp ' + rfilename, function(err, stdout, stderr){
-                                if (err) res.send("Error 2: " + err);
-                                else res.send("STDOUT: " + stdout + "<br>STDERR: " + stderr);
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    }
-    else res.render('index');
+  if (req.files.file){
+    grader.save(req.files.file, function(err, saved){
+      if (err) console.log("Error saving file: " + err);
+      grader.run(req.files.name, function(err){
+        if (err) console.log("Error running file" + err);
+      });
+    });
+  }
+  else res.render('index');
 });
 app.get('/grade', function(req,res){
 

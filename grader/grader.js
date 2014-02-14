@@ -1,4 +1,5 @@
 /* Evaluate and run programs */
+var fs = require('fs')
 module.exports.save = function(file, callback){
   var cfilename = file.name
   var rfilename = cfilename.substring(0, cfilename.indexOf("."));

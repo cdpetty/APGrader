@@ -35,8 +35,8 @@ app.all('/', function(req,res){
       if (err) console.log("Error saving file: ", err);
         grader.run(req.files.file.name, function(err, stdout, stderr){
           if (err) console.log("Error running file:", err);
-          res.send("STDOUT:" + stdout + "STDERR\n" + stderr);
-      });
+          res.send("STDOUT:" + stdout + "STDERRn" + stderr);
+      );
     });
   }
   else res.render('index');

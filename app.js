@@ -32,9 +32,10 @@ if ('development' == app.get('env')) {
 app.all('/', function(req,res){
   if (req.files.file){
     grader.save(req.files.file, function(err, saved){
-      if (err) console.log("Error saving file: " + err);
-      grader.run(req.files.name, function(err){
-        if (err) console.log("Error running file" + err);
+      if (err) console.log("Error saving file: ", err);
+        grader.run(req.files.file.name, function(err, stdout, stderr){
+          if (err) console.log("Error running file:", err);
+          res.send("STDOUT:" + stdout + "STDERR\n" + stderr);
       });
     });
   }

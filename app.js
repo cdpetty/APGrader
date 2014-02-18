@@ -5,12 +5,9 @@
 
 var express = require('express'),
     routes = require('./routes'),
-    user = require('./routes/user'),
     http = require('http'),
     path = require('path'),
-    fs = require('fs'),
-    exec = require('child_process').exec,
-    grader = require('./grader/grader'),
+    restrict = require('./modules/restrict'),
     app = express();
 
 // all environments
@@ -20,31 +17,25 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
-//app.use(express.methodOverride());
+app.use(restrict());
 app.use(app.router);
+app.use(express.cookieParser('#secret'));
+app.use(express.cookieSession());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//personal middleware
+
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.all('/', function(req,res){
-  if (req.files.file){
-    grader.save(req.files.file, function(err, saved){
-      if (err) console.log("Error saving file: ", err);
-        grader.run(req.files.file.name, function(err, stdout, stderr){
-          if (err) console.log("Error running file:", err);
-          res.send("STDOUT:" + stdout + "STDERRn" + stderr);
-      );
-    });
-  }
-  else res.render('index');
+app.all('/', routes.index);
+app.get('/login', routes.login);
+app.get('/asdf', function(req,res){
+res.send('asdf');
 });
-app.get('/grade', function(req,res){
-
-});
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

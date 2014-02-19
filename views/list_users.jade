@@ -4,10 +4,12 @@ block content
     form(type='get')
         span Teacher:
         select(name='teacher')
-            option(value='J') JStephens
-            option(value='M') RMueller
+            option(value='') Teacher
+            option(value='Stephens') JStephens
+            option(value='Mueller') RMueller
         span Class Period:
         select(name='period')
+            option(value='') Period
             option(value='1') 1
             option(value='2') 2
             option(value='3') 3
@@ -18,6 +20,7 @@ block content
             option(value='8') 8
         span Grade Level:
         select(name='grade_level')
+            option(value='') Grade
             option(value='9') 9
             option(value='10') 10
             option(value='11') 11

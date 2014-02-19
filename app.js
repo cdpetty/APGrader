@@ -7,7 +7,7 @@ var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    restrict = require('./modules/restrict'),
+    restrict = require('./middleware/restrict'),
     app = express();
 
 // all environments
@@ -17,10 +17,10 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
-app.use(restrict());
-app.use(app.router);
 app.use(express.cookieParser('#secret'));
 app.use(express.cookieSession());
+app.use(restrict()); //personal middleware
+app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //personal middleware
@@ -32,10 +32,9 @@ if ('development' == app.get('env')) {
 }
 
 app.all('/', routes.index);
-app.get('/login', routes.login);
-app.get('/asdf', function(req,res){
-res.send('asdf');
-});
+app.all('/login', routes.login);
+app.all('/create-new-user', routes.create_new_user);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

@@ -4,6 +4,7 @@
  */
 
 exports.login = require('./login');
+exports.create_new_user = require('./create_new_user');
 
 exports.index = function(req,res){
   if (req.files.file){

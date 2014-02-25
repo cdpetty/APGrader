@@ -20,7 +20,9 @@ module.exports = function (req, res) {
       if (err) res.send('Error saving user occured');
       else {
         //create home directory for new user
-        util.createDir(dirname, function(err){
+        var new__dirname = __dirname.substring(0, __dirname.lastIndexOf('/'));
+        var folder_path = new__dirname + '/storage'; 
+        util.createDir(folder_path, dirname, function(err){
           if (err) res.send('Error creating directory: ' + err);
           else res.send('New user: ' + new_username + ' created with password: ' + new_password);
         });

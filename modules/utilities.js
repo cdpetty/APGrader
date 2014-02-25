@@ -27,11 +27,11 @@ module.exports.save = function(file, dirname, callback){
 module.exports.createDir = function(dirpath, dirname, callback){
   var folder_path = dirpath + '/' + dirname;
   console.log('Folder path:', folder_path);
-  if (folder_path.indexOf('//') === -1) callback('The intended has too many "/": ' + folder_path);
-  else{
+  //if (folder_path.indexOf('//') === -1) callback('The intended has too many "/": ' + folder_path);
+  //else{
     fs.mkdir(folder_path, function(err){
       if (err) callback(err);
       else callback();
     });
-  }
+  //}
 };

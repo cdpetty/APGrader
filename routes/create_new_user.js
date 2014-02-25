@@ -10,7 +10,7 @@ module.exports = function (req, res) {
     var new_teacher = req.body.new_teacher;
     var new_first= req.body.new_first;
     var new_last = req.body.new_last;
-    var new_username = req.body.new_username;
+    var new_username = req.body.new_username.toLowerCase();
     var new_password = req.body.new_password;
     var dirname = new_first.toLowerCase() + '_' + new_last.toLowerCase();
     //create new user object for insertion in database

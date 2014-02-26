@@ -1,8 +1,6 @@
 var util = require('../modules/utilities');
 
-module.exports = function (db) {
-  return function(req,res){
-    console.log(db);
+module.exports = function (req,res) {
     db.users.save({a:'asdfdsa'});
     if(req.body.new_first && req.body.new_last && req.body.new_username && req.body.new_password){
       var new_grade = req.body.new_grade;
@@ -32,5 +30,4 @@ module.exports = function (db) {
     else {
       res.render('create_new_user');
     }
-  };
 };

@@ -1,7 +1,6 @@
 var util = require('../modules/utilities');
 
-module.exports = function (db) {
-  return function(req,res){
+module.exports = function(req,res){
     if ( req.query.teacher || req.query.period || req.query.grade_level){
       var query_object = {};
       if (req.query.teacher) query_object.teacher = req.query.teacher;

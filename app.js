@@ -31,12 +31,18 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//Connect to mongo
+var databaseUrl = "AP_DB",
+    collections = ["users"],
+    db = require("mongojs").connect(databaseUrl, collections);
+
 app.all('/', routes.index);
 app.all('/upload', routes.upload);
-app.all('/login', routes.login);
-app.all('/create-new-user', routes.create_new_user);
-app.all('/list-users', routes.list_users);
-app.all('/new-students', routes.new_students);
+app.all('/login', routes.login(db));
+app.all('/create-new-user', routes.create_new_user(db));
+app.all('/list-users', routes.list_users(db));
+app.all('/new-students', routes.new_students(db));
+app.all('/instantiate-user', routes.instantiate_user(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

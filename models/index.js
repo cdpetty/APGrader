@@ -1,26 +1,6 @@
-var mongoose = require('mongoose');
+var models = ['labs', 'submissions', 'submissionsByUser', 'users']
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var userSchema = new Schema({
-  username: String,
-  password: String,
-  first: String,
-  last: String,
-  dirname: String,
-  grade_level: Number,
-  period: Number,
-  teacher: Number,
-  labSubmissions: ObjectId
-});
-var users = mongoose.model('users', userSchema);
-
-var submissionsSchema = Schema({
-  submissions: [ObjectId]
-});
-
-var submissions = mongoose.model('submissions', submissionSchema);
-
-var labsSchema = Schema({
-  
+models.forEach( function (model) {
+  var modelImport = require(path.join(__dirname, model));
+  module.exports[model] = modelImport;
 });

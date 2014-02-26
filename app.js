@@ -8,6 +8,7 @@ var express = require('express'),
     http = require('http'),
     path = require('path'),
     restrict = require('./middleware/restrict'),
+    mongoose = require('mongoose'),
     app = express();
 
 // all environments
@@ -29,6 +30,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//connect to mongodb
+mongoose.connect('mongodb://localhost/APDB');
 
 app.all('/', routes.index);
 app.all('/upload', routes.upload);

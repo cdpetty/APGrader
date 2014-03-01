@@ -16,18 +16,16 @@ module.exports = function (req, res) {
         fs.readFile(path.join(folder_path, req.files.new_users.name), { encoding: 'utf8' }, function(err, data){
           var new_users = data.split('\n');
           //parse file
-          new_users.forEach(function(err, found){
-            if (found){
-              var user = found.split(' ');
-              var user_obj = {};
+          new_users.forEach(function(one){
+            if (one){
+              var user = one.split(' ');
+              var user_obj = new users();
               user_obj.first = user[0];
               user_obj.last = user[1];
               user_obj.grade_level = user[2];
               user_obj.teacher = user[3];
               user_obj.dirname = user[0] + '_' + user[1];
-              user_obj.password = '';
-              user_obj.username = '';
-              users.save(user_obj, function(err, saved){
+              user_obj.save(function(err, saved){
                 if (err) res.send(err);
                 else res.send('Successfully loaded names!');
               });

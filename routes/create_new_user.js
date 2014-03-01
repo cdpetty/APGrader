@@ -5,14 +5,15 @@ var util = require('../modules/utilities'),
 //Check for "requirements" in the post data
 var checkBody = function(request){
   var requirements = ['grade', 'period', 'teacher', 'first', 'last', 'username', 'password'];
+  var data_sent = true;
   requirements.forEach(function(requirement){
-    if (!req.param('new_' + requirement))
-      return false;
+    if (request.param('new_' + requirement) == undefined) 
+      data_sent = false;
   });
-  return true;
+  return data_sent;
 };
 
-module.exports = function (req,res) {
+module.exports = function (req, res) {
   //Check if new user should be created
   if(checkBody(req)){
     //create new user

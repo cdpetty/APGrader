@@ -10,15 +10,15 @@ module.exports = function(req,res){
     
     var a = '';
     users.find(query, function(err, found){
-      found.forEach(function(err, user){
+      console.log(found);
+      found.forEach(function(user){
         console.log("user:", user);
         if (err) res.send('Error finding students: ' + err);
         else{
           a += JSON.stringify(user);
         }
       });
-      if (!user)
-        res.send(a);
+      res.send(a);
     });
   }
   else{

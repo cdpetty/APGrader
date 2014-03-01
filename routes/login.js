@@ -4,8 +4,7 @@ var users = require('../models/users');
 module.exports = function (req, res) {
   //If user is logging in
   if(req.body.username && req.body.password){
-    var query = {username: req.body.username.toLowerCase(), password: req.body.password}
-    console.log('Username:', username, 'password:', password);
+    var query = {username: req.body.username.toLowerCase(), password: req.body.password};
     
     users.findOne(query, function(err, found){
       if (err) res.send(err);

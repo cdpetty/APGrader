@@ -32,7 +32,7 @@ module.exports = function (req, res) {
                 else res.send('Successfully loaded names!');
               });
             }
-          }
+          });
         });
       }
     });

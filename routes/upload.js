@@ -1,10 +1,11 @@
 var grader = require('../modules/grader'),
-    util = require('../modules/utilities');
+  util = require('../modules/utilities'),
+  path = require('path'),
+  users = require('../models/users');
 
 module.exports = function(req,res){
   if (req.files.file){
-    var new__dirname = __dirname.substring(0, __dirname.lastIndexOf('/'));
-    var folder_path = new__dirname + '/storage/' + req.session.dirname; 
+    var folder_path = path.join(__dirname, '../storage/' + req.session.dirname);
     util.save(req.files.file, folder_path, function(err, saved){
       if (err) console.log("Error saving file: ", err);
       else{

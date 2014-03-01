@@ -2,8 +2,20 @@ var util = require('../modules/utilities'),
     users = require('../models/users'),
     path = require('path')
 
+//Check for "requirements" in the post data
+var checkBody = function(request){
+  var requirements = ['grade', 'period', 'teacher', 'first', 'last', 'username', 'password'];
+  requirements.forEach(function(requirement){
+    if (!req.param('new_' + requirement))
+      return false;
+  });
+  return true;
+};
+
 module.exports = function (req,res) {
-  if(req.body.new_first && req.body.new_last && req.body.new_username && req.body.new_password){
+  //Check if new user should be created
+  if(checkBody(req)){
+    //create new user
     var new_user = new users();
     new_user.grade = req.body.new_grade;
     new_user.period = req.body.new_period;
@@ -13,6 +25,7 @@ module.exports = function (req,res) {
     new_user.username = req.body.new_username.toLowerCase();
     new_user.password = req.body.new_password;
     new_user.dirname = new_user.first + '_' + new_user.last;
+    //save new user
     new_user.save(function (err, saved){
       if (err) res.send('Error saving user occured:' + err);
       else {

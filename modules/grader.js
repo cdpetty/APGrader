@@ -1,10 +1,9 @@
 /* Evaluate and run programs */
 //Modules
-var exec = require('child_process').exec;
-
+var exec = require('child_process').exec,
+  path = require('path')
 module.exports.execute = function(filename, dirname, callback){
-  var new__dirname = __dirname.substring(0, __dirname.lastIndexOf('/'));
-  var folder_path = new__dirname + '/storage/' + dirname;
+  var folder_path = path.join(__dirname, '../storage/' + dirname)
   var type = getLanguage(filename);
   if (type === 'python') executePython(folder_path, filename, callback);
   else if (type === 'java') executeJava(folder_path, filename, callback);

@@ -31,5 +31,4 @@ module.exports.createDir = function(dirpath, dirname, callback){
       if (err) callback(err);
       else callback();
     });
-  //}
 };

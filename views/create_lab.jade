@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  form(method='post', enctype='multipart/form-data')
+    input(type='text', name='lab_name', placeholder='Lab Name')
+    input(type='file', name='output', placeholder='Intended Output')
+    input(type='file', name='runner', placeholder='New Runner')

@@ -3,12 +3,24 @@
  * GET home page.
  */
 
-exports.login = require('./login');
-exports.create_new_user = require('./create_new_user');
-exports.upload = require('./upload');
-exports.list_users = require('./list_users');
-exports.new_students = require('./new_students');
-exports.instantiate_user = require('./instantiate_user');
+exports.createRoutes = function(app){
+  var routes = {'login': 'all', 'create-new-user': 'all', 'upload': 'all', 'list-users': 'all', 'new-students': 'all', 'instantiate-user': 'all', 'create-lab': 'all'};
+  for (var route in routes){
+    exports[route] = require('./' + route);
+    switch (routes[route]){
+      case 'all': 
+        app.all('/' + route, exports[route]);
+        break;
+      case 'get':
+        app.get('/' + route, exports[route]);
+        break;
+      case 'post':
+        app.post('/'+ route, exports[route]);
+        break;
+    }
+  }
+  app.get('/', exports.index);
+};
 
 exports.index = function(req,res){
     res.send('This is the / route');

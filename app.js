@@ -33,13 +33,7 @@ if ('development' == app.get('env')) {
 mongoose.connect('mongodb://localhost/APDB');
 
 //routes
-app.all('/', routes.index);
-app.all('/upload', routes.upload);
-app.all('/login', routes.login);
-app.all('/create-new-user', routes.create_new_user);
-app.all('/list-users', routes.list_users);
-app.all('/new-students', routes.new_students);
-app.all('/instantiate-user', routes.instantiate_user);
+routes.createRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

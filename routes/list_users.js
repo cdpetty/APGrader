@@ -1,14 +1,13 @@
-var users = require('../models/users');
+var users = require('../models/users'),
+  possibilities = ['teacher', 'period', 'grade_level', 'class'];
 
 module.exports = function(req,res){
   //if client wants to search users
-  if ( req.query.teacher || req.query.period || req.query.grade_level){
-    var query = {};
-    if (req.query.teacher) query.teacher = req.query.teacher;
-    if (req.query.period) query.period = req.query.period;
-    if (req.query.grade_level) query.grade_level = req.query.grade_level;
-    
+  if ( checkBody(req) ){
+    //create search query
+    var query = getQuery(req);
     var a = '';
+    //search database for users
     users.find(query, function(err, found){
       console.log(found);
       found.forEach(function(user){
@@ -24,4 +23,23 @@ module.exports = function(req,res){
   else{
     res.render('list_users');
   }
+};
+
+function getQuery(request){
+  var query = {};
+  possibilities.forEach(function(possibility){
+    if ( request.param(possibility) ) query[possibility] = request.param(possibility);
+  });
+  return query;
+};
+
+function checkBody(request){
+  var data_sent = false;
+  possibilities.forEach( function (requirement) {
+    console.log(requirement + ":", request.param(requirement), '---');
+    if (request.param(requirement)) {
+      data_sent = true;
+    }
+  });
+  return data_sent;
 };

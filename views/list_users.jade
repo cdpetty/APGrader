@@ -1,28 +1,33 @@
 extends layout
 
 block content
-    form(type='get')
-        span Teacher:
-        select(name='teacher')
-            option(value='') Teacher
-            option(value='Stephens') JStephens
-            option(value='Mueller') RMueller
-        span Class Period:
-        select(name='period')
-            option(value='') Period
-            option(value='1') 1
-            option(value='2') 2
-            option(value='3') 3
-            option(value='4') 4
-            option(value='5') 5
-            option(value='6') 6
-            option(value='7') 7
-            option(value='8') 8
-        span Grade Level:
-        select(name='grade_level')
-            option(value='') Grade
-            option(value='9') 9
-            option(value='10') 10
-            option(value='11') 11
-            option(value='12') 12
-        input(type='submit')
+  form(type='get')
+    span Teacher:
+    select(name='teacher')
+      option(value='') Teacher
+      option(value='Stephens') JStephens
+      option(value='Mueller') RMueller
+    span Class Period:
+    select(name='period')
+      option(value='') Period
+      option(value='1') 1
+      option(value='2') 2
+      option(value='3') 3
+      option(value='4') 4
+      option(value='5') 5
+      option(value='6') 6
+      option(value='7') 7
+      option(value='8') 8
+    span Grade Level:
+    select(name='grade_level')
+      option(value='') Grade
+      option(value='9') 9
+      option(value='10') 10
+      option(value='11') 11
+      option(value='12') 12
+    span Class Name
+    select(name='class')
+      option(value='') Class
+      option(value='AP') AP
+      option(value='Web Apps') Web Apps
+    input(type='submit')

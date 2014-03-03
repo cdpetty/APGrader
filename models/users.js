@@ -11,9 +11,10 @@ var userSchema = new Schema({
   last: String,
   dirname: String,
   grade_level: Number,
+  class: String,
   period: Number,
   teacher: String,
-  submissions: ObjectId
+  submissions: Mixed
 });
 var users = mongoose.model('users', userSchema);
 

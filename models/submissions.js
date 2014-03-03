@@ -8,7 +8,8 @@ var submissionsSchema = Schema({
   output: String,
   lab_id: ObjectId,
   date: Date,
-  MOS: Mixed
+  MOS: Mixed,
+  name: String
 });
 var submissions = mongoose.model('submissions', submissionSchema);
 

@@ -4,10 +4,10 @@ var util = require('../modules/utilities'),
 
 //Check for "requirements" in the post data
 var checkBody = function(request){
-  var requirements = ['grade', 'period', 'teacher', 'first', 'last', 'username', 'password'];
+  var requirements = ['grade', 'period', 'teacher', 'first', 'last', 'username', 'password', 'class'];
   var data_sent = true;
   requirements.forEach(function(requirement){
-    if (request.param('new_' + requirement) == undefined) 
+    if (!request.param('new_' + requirement)) 
       data_sent = false;
   });
   return data_sent;
@@ -26,6 +26,7 @@ module.exports = function (req, res) {
     new_user.username = req.body.new_username.toLowerCase();
     new_user.password = req.body.new_password;
     new_user.dirname = new_user.first + '_' + new_user.last;
+    new_user.class = req.body.new_class;
     //save new user
     new_user.save(function (err, saved){
       if (err) res.send('Error saving user occured:' + err);

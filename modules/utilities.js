@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs = require('fs'),
+  path = require('path');
 
 /*modules.save takes 2 params with an required callback
  * @file is the file object
@@ -10,7 +11,7 @@ module.exports.save = function(file, dirname, callback){
   fs.readFile(file.path, function(err, data){
     if (err) callback(err)
     else { 
-      fs.writeFile(dirname + '/' + file.name, data, function(err){
+      fs.writeFile(path.join(dirname, file.name), data, function(err){
         if (err) callback(err);
         else callback(err, file);
       });
@@ -25,10 +26,7 @@ module.exports.save = function(file, dirname, callback){
  * if no error, err will be null
  */
 module.exports.createDir = function(dirpath, dirname, callback){
-  var folder_path = dirpath + '/' + dirname;
-  console.log('Folder path:', folder_path);
-  //if (folder_path.indexOf('//') === -1) callback('The intended has too many "/": ' + folder_path);
-  //else{
+  var folder_path = path.join(dirpath, dirname);
     fs.mkdir(folder_path, function(err){
       if (err) callback(err);
       else callback();

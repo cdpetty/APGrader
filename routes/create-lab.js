@@ -4,7 +4,8 @@ var labs = require('../models/labs'),
 
 module.exports = function(req, res) {
   if (req.body.lab_name && req.files.output){
-    util.saveFil
+    var dirpath = path.join(__dirname, '..');
+    var dirname = req.body.lab_name;
   }
   else res.render('create_lab');
 };

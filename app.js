@@ -33,6 +33,7 @@ if ('development' == app.get('env')) {
 //connect to mongodb
 mongoose.connect('mongodb://localhost/APDB');
 
+//routes
 app.all('/', routes.index);
 app.all('/upload', routes.upload);
 app.all('/login', routes.login);

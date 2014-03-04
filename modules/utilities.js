@@ -7,11 +7,11 @@ var fs = require('fs'),
  * The callback is executed on completion with params err, @file
  * if no error, err is will be null
  */
-module.exports.save = function(file, dirname, callback){
+module.exports.save = function(file, dirname, filename, callback){
   fs.readFile(file.path, function(err, data){
     if (err) callback(err)
     else { 
-      fs.writeFile(path.join(dirname, file.name), data, function(err){
+      fs.writeFile(path.join(dirname, filename), data, function(err){
         if (err) callback(err);
         else callback(err, file);
       });

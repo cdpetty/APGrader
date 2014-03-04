@@ -6,7 +6,7 @@ var grader = require('../modules/grader'),
 module.exports = function(req,res){
   if (req.files.file){
     var folder_path = path.join(__dirname, '../storage/' + req.session.dirname);
-    util.save(req.files.file, folder_path, function(err, saved){
+    util.save(req.files.file, folder_path, req.files.file.name, function(err, saved){
       if (err) console.log("Error saving file: ", err);
       else{
         console.log('Your file has been saved!');

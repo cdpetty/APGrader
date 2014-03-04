@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
 //Define labs schema and model
 var labsSchema = Schema({
   dirname: String,
-  name: String
+  name: String,
+  runner_name: String
 });
 var labs = mongoose.model('labs', labsSchema);
 

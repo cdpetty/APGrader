@@ -11,6 +11,6 @@ var submissionsSchema = Schema({
   MOS: Mixed,
   name: String
 });
-var submissions = mongoose.model('submissions', submissionSchema);
+var submissions = mongoose.model('submissions', submissionsSchema);
 
 module.exports = submissions;

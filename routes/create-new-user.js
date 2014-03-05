@@ -1,5 +1,7 @@
 var util = require('../modules/utilities'),
     users = require('../models/users'),
+    options = require('../models/options'),
+    db_util = require('../modules/db_utilities'),
     path = require('path');
 
 //Check for "requirements" in the post data
@@ -7,7 +9,7 @@ var checkBody = function(request){
   var requirements = ['grade', 'period', 'teacher', 'first', 'last', 'username', 'password', 'class'];
   var data_sent = true;
   requirements.forEach(function(requirement){
-    if (!request.param('new_' + requirement)) 
+    if (!request.param('new_' + requirement) || request.param('new_' + requirement) === '' ) 
       data_sent = false;
   });
   return data_sent;
@@ -41,6 +43,12 @@ module.exports = function (req, res) {
     });
   }
   else {
-    res.render('create_new_user');
+    db_util.getAllOptions(function(err, options){
+      if (err) res.send(err);
+      else{
+        console.log(options);
+        res.render('create_new_user', {teachers: options.teachers, classPeriods: options.arrClassPeriods, classes: options.classes});
+      }
+    });
   }
 };

@@ -7,6 +7,6 @@ var optionsSchema = Schema({
   numClassPeriods: Number,
   classes: [String]
 });
-var options = mongoose.model('labs', optionsSchema);
+var options = mongoose.model('options', optionsSchema);
 
 module.exports = options;

@@ -11,7 +11,6 @@ module.exports = function (req, res) {
       if (found){
         req.session.user_id = found._id;
         req.session.username = found.username;
-        req.session.password = found.password;
         req.session.dirname = found.dirname;
         res.send('You logged in!');
       }

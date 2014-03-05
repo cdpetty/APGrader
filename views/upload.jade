@@ -3,9 +3,8 @@ extends layout
 block content
   form(method='post', enctype='multipart/form-data')
     select(name='lab_name')
-      option(value='') Lab Name
+      option(value="") Lab Name
       each lab in labs
         option(value='#{lab.name}')=lab.name
-    input(type='text', name='lab_name', placeholder='Lab Name')
     input(type='file', name='file')
     input(type='submit')

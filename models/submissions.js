@@ -5,11 +5,14 @@ var mongoose = require('mongoose'),
 
 //Define submissions schema and model
 var submissionsSchema = Schema({
-  output: String,
+  stdout: String,
+  stderr: String,
   lab_id: ObjectId,
   date: Date,
   MOS: Mixed,
-  name: String
+  name: String,
+  user: ObjectId,
+  attempt: Number
 });
 var submissions = mongoose.model('submissions', submissionsSchema);
 

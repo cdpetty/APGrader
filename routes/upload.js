@@ -32,12 +32,13 @@ module.exports = function(req,res){
                     });
                   }
                   else{
+                    console.log("5");
                     new_lab_submission = new db.submissions();
                     new_lab_submission.name = req.body.lab_name;
                     new_lab_submission.stdout = stdout;
                     new_lab_submission.stderr = stderr;
                     new_lab_submission.filename = req.files.file.name;
-                    new_lab_submission.user = req.session._id;
+                    new_lab_submission.user = req.session.user_id;
                     new_lab_submission.date = new Date();
                     new_lab_submission.lab_id = foundLab._id;
                     new_lab_submission.MOS = "";

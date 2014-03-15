@@ -11,7 +11,7 @@ module.exports.getArrayOfClasses = function(callback){
   db.options.findOne({}, function(err, found){
     if (err) console.log(err);
     var arr_classes = new Array();
-    for (var x = 1; x <= found.numClassPeriods; x++)
+    for (var x = 1; x <== found.numClassPeriods; x++)
       arr_classes.push(x);
     callback(err, arr_classes);
   });

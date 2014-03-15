@@ -1,0 +1,4 @@
+use APDB
+db.users.drop()
+db.labs.drop()
+db.submissions.drop()

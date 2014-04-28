@@ -1,9 +1,9 @@
 var db = require('../models');
 
-module.exports.getTeachers = function(callback){
-  db.options.findOne({}, function(err, found){
+/*module.exports.getTeachers = function(callback){
+  db.teachers.find({}, function(err, found){
     if (err) console.log(err);
-    callback(err, found.teachers);
+    callback(err, found);
   });
 };
 
@@ -18,7 +18,7 @@ module.exports.getArrayOfClasses = function(callback){
 };
 
 module.exports.getClasses = function(callback){
-  db.options.findOne({}, function(err, found){
+  db.classes.findOne({}, function(err, found){
     if (err) console.log(err);
     callback(err, found.classes);
   });
@@ -35,4 +35,4 @@ module.exports.getAllOptions = function(callback){
     found['arrClassPeriods'] = arr_classes;
     callback(err, found);
   });
-};
+};*/

@@ -1,4 +1,4 @@
-var options = require('../models/options');
+/*var options = require('../models/options');
 
 module.exports = function(req,res){ 
   if (req.body.teachers && req.body.numClassPeriods && req.body.classes){
@@ -17,4 +17,4 @@ module.exports = function(req,res){
     });
   }
   else res.render('initialize');
-}
+}*/

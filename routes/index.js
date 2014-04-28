@@ -12,7 +12,7 @@ exports.createRoutes = function(app){
     'new-students': 'all',
     'instantiate-user': 'all',
     'create-lab': 'all',
-    'initialize': 'all'
+    //'initialize': 'all'
   };
   for (var route in routes){
     exports[route] = require('./' + route);

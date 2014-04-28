@@ -1,4 +1,4 @@
-var models = ['labs', 'submissions', 'users', 'options', 'classes', 'periods', 'teachers'],
+var models = ['labs', 'submissions', 'users', 'classes', 'periods', 'teachers'],
   path = require('path');
 
 models.forEach( function (model) {

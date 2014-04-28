@@ -1,6 +1,5 @@
 var util = require('../modules/utilities'),
     users = require('../models/users'),
-    options = require('../models/options'),
     db_util = require('../modules/db_utilities'),
     path = require('path');
 
@@ -43,12 +42,12 @@ module.exports = function (req, res) {
     });
   }
   else {
-    db_util.getAllOptions(function(err, options){
+    /*db_util.getAllOptions(function(err, options){
       if (err) res.send(err);
       else{
         console.log(options);
         res.render('create_new_user', {teachers: options.teachers, classPeriods: options.arrClassPeriods, classes: options.classes});
       }
-    });
+    });*/
   }
 };

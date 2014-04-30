@@ -8,8 +8,9 @@ body {
   height: 100%;
   padding: 0px 10px 1px 10px;
   margin: auto;
+  margin-bottom: 20px;
   background-color: white;
-  padding-bottom: 10px;
+  border-radius: 7px;
 }
 h1 {
   text-align: center;
@@ -32,7 +33,7 @@ h1 {
 
 #cssmenu ul li ul li a.right {
   padding: 14px 0px 11px 20px;
-  margin-right: -34px;
+  margin-right: -36px;
   margin-top: -5px;
 }
 
@@ -48,6 +49,7 @@ h1 {
     width: 400px;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 15px;
     background: #FFF;
     padding: 20px 30px 20px 30px;
     font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -106,9 +108,6 @@ h1 {
 .bootstrap-frm select {
     background: #FFF url('/images/down-arrow.png') no-repeat right;
     background: #FFF url('/images/down-arrow.png') no-repeat right);
-    appearance:none;
-   -webkit-appearance:none; 
-    -moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';
     width: 74%;

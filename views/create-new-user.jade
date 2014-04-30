@@ -1,30 +1,34 @@
 extends layout
 block content
   br
-  form(class='bootstrap-frm')
+  form(method='post' class='bootstrap-frm')
     h1 Account Signup
       span Please complete each input field
     label First Name:
-    input(type='text' required)
+    input(name='first' type='text' required)
     label Last Name:
-    input(type='text' required)
+    input(name='last' type='text' required)
     label Period:
     select(required)
-      option(value='1st') 1st
-      option(value='2nd') 2nd
-      option(value='3rd') 3rd
-      option(value='4th') 4th
-      option(value='5th') 5th
-      option(value='6th') 6th
-      option(value='7th') 7th
-      option(value='8th') 8th
+      option(name='1st' value='1st') 1st
+      option(name='2nd' value='2nd') 2nd
+      option(name='3rd' value='3rd') 3rd
+      option(name='4th' value='4th') 4th
+      option(name='5th' value='5th') 5th
+      option(name='6th' value='6th') 6th
+      option(name='7th' value='7th') 7th
+      option(name='8th' value='8th') 8th
+    label Teacher:
+    input(name='teacher' type='text' required)
     label Class Name:
-    input(type='text' required)
+    input(name='class' type='text' required)
+    label Grade:
+    input(name='grade' type='text' required)
     label Username:
-    input(type='text' required)
+    input(name='username' type='text' required)
     label Signup Code:
-    input(type='text' required)
+    input(name='signupCode' type='text' required)
     label Password
-    input(type='password' required)
+    input(name='password' type='password' required)
     br
     input(type='submit')

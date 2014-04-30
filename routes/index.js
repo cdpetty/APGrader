@@ -32,5 +32,5 @@ exports.createRoutes = function(app){
 };
 
 exports.index = function(req,res){
-    res.send('This is the / route');
+    res.render('index');
 };

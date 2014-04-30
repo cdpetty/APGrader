@@ -1,0 +1,28 @@
+extends layout
+block content
+  br
+  form(class='bootstrap-frm')
+    h1 Account Signup
+      span Please complete each input field
+    label Name (First Last):
+    input(type='text' required)
+    label Period:
+    select(required)
+      option(value='1st') 1st
+      option(value='2nd') 2nd
+      option(value='3rd') 3rd
+      option(value='4th') 4th
+      option(value='5th') 5th
+      option(value='6th') 6th
+      option(value='7th') 7th
+      option(value='8th') 8th
+    label Class Name:
+    input(type='text' required)
+    label Username:
+    input(type='text' required)
+    label Signup Code:
+    input(type='text' required)
+    label Password
+    input(type='password' required)
+    br
+    input(type='submit')

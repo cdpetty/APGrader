@@ -1,23 +1,50 @@
 doctype html
 html
   head
-    title= title
+    title= 'AP Grader'
+    meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(type='text/javascript' src='/javascripts/menu_jquery.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/nav.css')
   body
-    a(href='/') /
-    br
-    a(href='/login') Login
-    br
-    a(href='/create-new-user') CreateNewUser
-    br
-    a(href='/list-users') ListUsers
-    br
-    a(href='/upload') upload
-    br
-    a(href='/new-students') NewStudents
-    br
-    a(href='/create-lab') CreateLab
-    br
-    a(href='/initialize') Initialize
-    br
+    div(id='logged-in') #{name}
+    h1= 'AP Grader'
+    div(id='cssmenu')
+      ul
+        li(class='' id='forl')
+          a(href='/') Home
+        li(class='')
+          a(href='#') Upload
+        li(class='')
+          a(href='#') Download
+        li(class='has-sub last' class='last' id='forl')
+          a(href='#') Account
+          ul
+            li
+              a(href='/login' class='right') Log In
+            li()
+              a(href='#' class='right') Log Out
+            li(class='last')
+              a(href='create-new-user' class='right') Sign Up
     block content
+    
+    //
+        a(href='/') /
+        br
+        a(href='/login') Login
+        br
+        a(href='/create-new-user') CreateNewUser
+        br
+        a(href='/list-users') ListUsers
+        br
+        a(href='/upload') upload
+        br
+        a(href='/new-students') NewStudents
+        br
+        a(href='/create-lab') CreateLab
+        br
+        a(href='/initialize') Initialize
+        br
+        block content

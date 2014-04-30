@@ -42,6 +42,7 @@ module.exports = function (req, res) {
     });
   }
   else {
+    res.render('create-new-user');
     /*db_util.getAllOptions(function(err, options){
       if (err) res.send(err);
       else{

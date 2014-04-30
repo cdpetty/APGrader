@@ -1,7 +1,13 @@
 extends layout
-
 block content
-  form(method='post')
-    input(name='username', placeholder='Username')
-    input(name='password', placeholder='Password', type='password')
+  br
+  form(class='bootstrap-frm' method='post')
+    h1 Account Login
+      span Please complete each input field
+    label Username
+    input(name='username' type='text' required)
+    label Password
+    input(name='password' type='password' required)
+    br
     input(type='submit')
+    #{error}

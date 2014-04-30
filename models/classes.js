@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 //Define labs schema and model
 var classesSchema = Schema({
-  classes: [String]
+  name: [String]
 });
 var classes = mongoose.model('classes', classesSchema);
 

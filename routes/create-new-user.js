@@ -43,12 +43,5 @@ module.exports = function (req, res) {
   }
   else {
     res.render('create-new-user');
-    /*db_util.getAllOptions(function(err, options){
-      if (err) res.send(err);
-      else{
-        console.log(options);
-        res.render('create_new_user', {teachers: options.teachers, classPeriods: options.arrClassPeriods, classes: options.classes});
-      }
-    });*/
   }
 };

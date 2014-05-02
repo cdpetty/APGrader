@@ -8,23 +8,25 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nav.css')
   body
-    div(id='logged-in') #{name}
+    block name
     h1= 'AP Grader'
     div(id='cssmenu')
       ul
         li(class='' id='forl')
           a(href='/') Home
         li(class='')
-          a(href='#') Upload
+          a(href='/upload') Upload
         li(class='')
           a(href='#') Download
+        li(class='')
+          a(href='#') Submissions
         li(class='has-sub last' class='last' id='forl')
           a(href='#') Account
           ul
             li
               a(href='/login' class='right') Log In
             li()
-              a(href='#' class='right') Log Out
+              a(href='/logout' class='right') Log Out
             li(class='last')
               a(href='create-new-user' class='right') Sign Up
     block content

@@ -3,13 +3,13 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-    routes = require('./routes'),
-    http = require('http'),
-    path = require('path'),
-    restrict = require('./middleware/restrict'),
-    mongoose = require('mongoose'),
-    app = express();
+  var express = require('express'),
+  routes = require('./routes'),
+  http = require('http'),
+  path = require('path'),
+  restrict = require('./middleware/restrict'),
+  mongoose = require('mongoose'),
+  app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);

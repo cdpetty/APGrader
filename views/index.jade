@@ -1,4 +1,7 @@
 extends layout
+block name 
+  if name
+    div(id='logged-in') Logged in as: #{name}
 block content
   div(id='announcements')
     p This week in AP...

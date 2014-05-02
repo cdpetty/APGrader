@@ -12,6 +12,7 @@ exports.createRoutes = function(app){
     'new-students': 'all',
     'instantiate-user': 'all',
     'create-lab': 'all',
+    'logout': 'get',
     //'initialize': 'all'
   };
   for (var route in routes){
@@ -32,5 +33,7 @@ exports.createRoutes = function(app){
 };
 
 exports.index = function(req,res){
-    res.render('index');
+    //var express = require('express');
+    //var app = express();
+    res.render('index', {name: req.session.name});
 };

@@ -1,6 +1,10 @@
 /* Login */
 var users = require('../models/users');
 
+function capitalizeName(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 module.exports = function (req, res) {
   //If user is logging in
   if(req.body.username && req.body.password){
@@ -13,10 +17,14 @@ module.exports = function (req, res) {
         res.send(err);
       if (found){
         console.log('user was found');
+        req.session.loggedIn = true;
         req.session.user_id = found._id;
         req.session.username = found.username;
         req.session.dirname = found.dirname;
-        app.locals.name = found.first + " " + first.last;
+        req.session.name = capitalizeName(found.first) + " " + capitalizeName(found.last);
+        //express = require('express');
+        //app = express();
+        //app.locals.name = found.first + " " + found.last;
         res.redirect('/');
         //res.send('You logged in!');
       }
@@ -26,5 +34,5 @@ module.exports = function (req, res) {
     });
   }
   else
-    res.render('login', {});
+    res.render('login', {name: req.session.name});
 };

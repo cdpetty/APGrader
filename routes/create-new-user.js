@@ -8,9 +8,10 @@ var checkBody = function(request){
   console.log('checking body');
   var requirements = ['grade', 'period', 'teacher', 'first', 'last', 'username', 'password', 'class', 'signupCode'];
   var data_sent = true;
+  console.log('CHECKING BODY');
   requirements.forEach(function(requirement){
     if (!request.param(requirement) || request.param(requirement) === '' ){ 
-      console.log(request.param(requirement));
+      console.log(requirement, ':', request.param(requirement));
       data_sent = false;
     }
   });
@@ -30,7 +31,7 @@ module.exports = function (req, res) {
     new_user.last = req.body.last.toLowerCase();
     new_user.username = req.body.username.toLowerCase();
     new_user.password = req.body.password;
-    new_user.dirname = user.first + '_' + user.last;
+    new_user.dirname = new_user.first + '_' + new_user.last;
     new_user.class = req.body.class;
     new_user.signupCode = req.body.signupCode;
     //save new user
@@ -47,7 +48,7 @@ module.exports = function (req, res) {
     });
   }
   else {
-    res.render('create-new-user');
+    res.render('create-new-user', {name: req.session.name});
     /*db_util.getAllOptions(function(err, options){
       if (err) res.send(err);
       else{

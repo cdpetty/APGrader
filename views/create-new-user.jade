@@ -1,4 +1,7 @@
 extends layout
+block name 
+  if name
+    div(id='logged-in') Logged in as: #{name}
 block content
   br
   form(method='post' class='bootstrap-frm')
@@ -9,15 +12,15 @@ block content
     label Last Name:
     input(name='last' type='text' required)
     label Period:
-    select(required)
-      option(name='1st' value='1st') 1st
-      option(name='2nd' value='2nd') 2nd
-      option(name='3rd' value='3rd') 3rd
-      option(name='4th' value='4th') 4th
-      option(name='5th' value='5th') 5th
-      option(name='6th' value='6th') 6th
-      option(name='7th' value='7th') 7th
-      option(name='8th' value='8th') 8th
+    select(required, name='period')
+      option(value='1') 1st
+      option(value='2') 2nd
+      option(value='3') 3rd
+      option(value='4') 4th
+      option(value='5') 5th
+      option(value='6') 6th
+      option(value='7') 7th
+      option(value='8') 8th
     label Teacher:
     input(name='teacher' type='text' required)
     label Class Name:
@@ -26,9 +29,9 @@ block content
     input(name='grade' type='text' required)
     label Username:
     input(name='username' type='text' required)
-    label Signup Code:
-    input(name='signupCode' type='text' required)
     label Password
     input(name='password' type='password' required)
+    label Signup Code:
+    input(name='signupCode' type='text' required)
     br
     input(type='submit')

@@ -45,7 +45,12 @@ module.exports = function(req,res){
                     new_lab_submission.attempt = 1;
                     new_lab_submission.save(function(err,saved){
                       if (err) res.send(err);
-                      else res.send("Submission saved: <br> STDOUT:" + stdout + "<br>STDERR:" + stderr);
+                      else{
+                          db.labs.find({}, function(err, found){
+                          res.render('upload', {message: 'Uploaded with output:', output: stdout, labs: found});
+                          //res.send("Submission saved: <br> STDOUT:" + stdout + "<br>STDERR:" + stderr);
+                          });
+                      }
                     });
                   }
                 });

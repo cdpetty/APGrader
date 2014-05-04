@@ -22,11 +22,22 @@ block content
       option(value='7') 7th
       option(value='8') 8th
     label Teacher:
-    input(name='teacher' type='text' required)
+    select(required, name='teacher')
+      option(value='Stephens') Stephens
+      option(value='Mueller') Mueller
     label Class Name:
-    input(name='class' type='text' required)
+    select(required, name='class')
+        option(value='AP Computer Science') AP Computer Science
+        option(value='Computer Programming') Computer Programming
+        option(value='Advanced Computer Programming') Advanced Computer Programming
+        option(value='Web Apps') Web Apps
+        option(value='Digital Electronics') Digital Electronics
     label Grade:
-    input(name='grade' type='text' required)
+    select(required, name='grade')
+      option(value='9') 9th
+      option(value='10') 10th
+      option(value='11') 11th
+      option(value='12') 12th
     label Username:
     input(name='username' type='text' required)
     label Password

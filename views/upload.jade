@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  form(method='post', enctype='multipart/form-data')
+  h3 Lab Uploader
+  form(class='bootstrap-frm' method='post', enctype='multipart/form-data')
     select(name='lab_name')
       option(value="") Lab Name
       each lab in labs

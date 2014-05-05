@@ -21,7 +21,7 @@ module.exports = function(req,res){
     });
   }
   else{
-    res.render('list_users');
+    res.render('list-users');
   }
 };
 

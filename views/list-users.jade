@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  form(class='bootstrap-frm' meth='get')
+    label Teacher:
+    select(name='teacher')
+      option(value='Stephens') Stephens
+      option(value='Mueller') Mueller
+    label Period:
+    select(name='period')
+      option(value='1') 1
+      option(value='2') 2
+      option(value='3') 3
+      option(value='4') 4
+      option(value='5') 5
+      option(value='6') 6
+      option(value='7') 7
+      option(value='8') 8
+    label Grade:
+    select(name='grade_level')
+      option(value='9') 9th
+      option(value='10') 10th
+      option(value='11') 11th
+      option(value='12') 12th
+    label Class:
+    select(name='class')
+      option(value='AP') AP Computer Science
+      option(value='Web Apps') Web Apps
+      option(value='Advanced Computer Programming') Advanced Computer Programming
+      option(value='Digital Electronics') Digital Electronics
+    input(type='submit')

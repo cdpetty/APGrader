@@ -13,6 +13,7 @@ exports.createRoutes = function(app){
     'instantiate-user': 'all',
     'create-lab': 'all',
     'logout': 'get',
+    'submissions': 'all'
     //'initialize': 'all'
   };
   for (var route in routes){

@@ -20,7 +20,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.cookieParser('#secret'));
 app.use(express.cookieSession());
-app.use(restrict());  //personal middleware
+//app.use(restrict());  //personal middleware
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -12,8 +12,7 @@ exports.createRoutes = function(app){
     'new-students': 'all',
     'instantiate-user': 'all',
     'create-lab': 'all',
-    'logout': 'get',
-    //'initialize': 'all'
+    'logout': 'get'
   };
   for (var route in routes){
     exports[route] = require('./' + route);

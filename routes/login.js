@@ -22,11 +22,7 @@ module.exports = function (req, res) {
         req.session.username = found.username;
         req.session.dirname = found.dirname;
         req.session.name = capitalizeName(found.first) + " " + capitalizeName(found.last);
-        //express = require('express');
-        //app = express();
-        //app.locals.name = found.first + " " + found.last;
         res.redirect('/');
-        //res.send('You logged in!');
       }
       else{
         res.redirect('/create-new-user');

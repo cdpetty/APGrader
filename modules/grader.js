@@ -1,14 +1,15 @@
 /* Evaluate and run programs */
 //Modules
 var exec = require('child_process').exec,
-  path = require('path')
+  path = require('path');
+
 module.exports.execute = function(filename, dirname, callback){
   var folder_path = path.join(__dirname, '../storage/' + dirname)
   var type = getLanguage(filename);
   if (type === 'python') executePython(folder_path, filename, callback);
   else if (type === 'java') executeJava(folder_path, filename, callback);
   else if (type === 'cpp') executeCPlusPlus(folder_path, filename, callback);
-};
+};  
 
 function getLanguage(filename){
   filename_split = filename.split('.');
@@ -23,7 +24,7 @@ function executeJava(folder_path, filename, callback){
     if(err) callback(err);
     else{
       var rfilename = filename.substring(0, filename.indexOf("."));
-      var run_command = 'java -cp ' + folder_path + ' ' + rfilename;
+      var run_command = 'java -cp ' + path.join(folder_path, rfilename) + ' > ';
       exec(run_command, function(err, stdout, stderr){
         if (err) callback(err);
         else callback(err, stdout, stderr);

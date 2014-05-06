@@ -10,7 +10,8 @@ var submissionsSchema = Schema({
   lab_id: ObjectId,
   date: Date,
   MOS: Mixed,
-  name: String,
+  labname: String,
+  filename: String,
   user: ObjectId,
   attempt: Number
 });

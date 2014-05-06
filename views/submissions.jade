@@ -2,11 +2,11 @@ extends layout
 block content
   br
   if submissions
-    form(method='get')
+    form(method='post')
       each submission in submissions
         div 
-          input(type='checkbox')
-          strong Lab: #{submission.name}
+          input(type='radio' name='selection' value='#{submission.filename}')
+          strong Lab: #{submission.labname}
           div(class='labAttributes')
             div Upload Date: #{submission.date}
             div Output: #{submission.stdout}

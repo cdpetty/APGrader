@@ -49,7 +49,7 @@ module.exports = function (req, res) {
           }
         });
       }
-    }
+    });
   }
   else {
     res.render('create-new-user', {name: req.session.name});

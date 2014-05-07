@@ -9,3 +9,18 @@ block content
     textarea(name='content')
     br
     input(type='submit')
+    br
+    br
+    div #{isSaved}
+  
+  br
+  h2 Current Announcements:
+  form(method='post')
+    each announcement in Announcements
+      div 
+        input(type='checkbox' name='selection' value='#{announcement.title}')
+        strong Title: #{announcement.title}
+        div(class='labAttributes')
+          div #{announcement.content}
+          br
+    input(type='submit' value='Delete')

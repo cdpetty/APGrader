@@ -64,6 +64,6 @@ module.exports = function (req, res) {
     
   }
   else {
-    res.render('create-new-user', {name: req.session.name});
+    res.render('create-new-user', {name: req.session.name, admin: req.session.admin});
   }
 };

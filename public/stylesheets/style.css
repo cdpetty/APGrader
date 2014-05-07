@@ -16,14 +16,26 @@ h1 {
   text-align: center;
   padding-top: 10px;
 }
-#announcements {
-  padding-top: 50px; 
+
+#announce {
+  font-size: 26px; 
 }
-#announcements>p {
+
+.announcements {
+  padding-bottom: 1px;
+}
+
+.announcements>p {
   color: #222930;
   font-size: 16pt;
   line-height: .4;
 }
+
+.announcements>p>span {
+  color: black;
+  font-size: 10pt;
+}
+
 #logged-in {
   position: absolute;
   z-index: 20;
@@ -42,7 +54,7 @@ h1 {
 }
 
 h3 {
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .labAttributes {

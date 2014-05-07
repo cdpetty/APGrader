@@ -2,6 +2,7 @@
 /*
  * GET home page.
  */
+announcements = require('../models/announcements');
 
 exports.createRoutes = function(app){
   var routes = {
@@ -35,7 +36,10 @@ exports.createRoutes = function(app){
 };
 
 exports.index = function(req,res){
-    //var express = require('express');
-    //var app = express();
-    res.render('index', {name: req.session.name, admin: req.session.admin});
+  //var express = require('express');
+  //var app = express();
+  announcements.find({}, function(err, found){
+    res.render('index', {name: req.session.name, admin: req.session.admin, Announcements: found});
+  });
+  //res.render('index', {name: req.session.name, admin: req.session.admin});
 };

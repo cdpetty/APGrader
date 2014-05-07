@@ -14,6 +14,7 @@ var userSchema = new Schema({
   class: String,
   period: Number,
   teacher: String,
+  admin: Boolean,
   submissions: Mixed
 });
 var users = mongoose.model('users', userSchema);

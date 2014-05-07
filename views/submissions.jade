@@ -5,10 +5,12 @@ block content
     form(method='post')
       each submission in submissions
         div 
-          input(type='radio' name='selection' value='#{submission.filename}')
+          input(type='checkbox' name='selection' value='#{submission.filename}')
           strong Lab: #{submission.labname}
           div(class='labAttributes')
+            div File Name: #{submission.filename}
             div Upload Date: #{submission.date}
             div Output: #{submission.stdout}
             div Correct:
+            br
       input(type='submit' value='Download')

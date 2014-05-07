@@ -22,7 +22,7 @@ module.exports = function(req,res){
               else{
                 console.log("3");
                 //GET MOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-                db.submissions.findOne({name: req.body.lab_name, user: req.session._id}, function(err, foundSubmission){
+                db.submissions.findOne({labname: req.body.lab_name, user: req.session._id}, function(err, foundSubmission){
                   if (err) res.send(err);
                   else if (foundSubmission){
                     console.log("4");

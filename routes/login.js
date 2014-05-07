@@ -21,11 +21,13 @@ module.exports = function (req, res) {
         req.session.user_id = found._id;
         req.session.username = found.username;
         req.session.dirname = found.dirname;
+        req.session.admin = found.admin;
         req.session.name = capitalizeName(found.first) + " " + capitalizeName(found.last);
         res.redirect('/');
       }
       else{
-        res.redirect('/create-new-user');
+        res.render('login', {name: req.session.name, error: 'Incorrect username/password combination'});
+        //res.redirect('/create-new-user');
       }
     });
   }

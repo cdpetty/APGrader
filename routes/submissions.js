@@ -25,7 +25,7 @@ module.exports = function(req, res){
   else{
     db.submissions.find({user: req.session.user_id}, function(err, found){
       console.log('submissions: ' + found);
-      res.render('submissions', {submissions: found});
+      res.render('submissions', {submissions: found, name: req.session.name});
     });
   }
 }

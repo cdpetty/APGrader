@@ -47,7 +47,7 @@ module.exports = function(req,res){
                       if (err) res.send(err);
                       else{
                           db.labs.find({}, function(err, found){
-                          res.render('upload', {message: 'Uploaded with output:', output: stdout, labs: found});
+                          res.render('upload', {message: 'Uploaded with output:', output: stdout, labs: found, name: req.session.name});
                           //res.send("Submission saved: <br> STDOUT:" + stdout + "<br>STDERR:" + stderr);
                           });
                       }
@@ -63,7 +63,7 @@ module.exports = function(req,res){
   }
   else{
     db.labs.find({}, function(err, found){
-      res.render('upload', {labs: found});
+      res.render('upload', {labs: found, name: req.session.name});
     });
   }
 };

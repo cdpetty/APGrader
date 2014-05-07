@@ -35,5 +35,5 @@ module.exports = function(req, res) {
       });
     });
   }
-  else res.render('create_lab');
+  else res.render('create_lab', {name: req.session.name, admin: req.session.admin});
 };

@@ -1,0 +1,11 @@
+extends layout
+block content
+  br
+  form(method='post' class='bootstrap-frm')
+    h1 Write Announcements
+    label Title:
+    input(type='text' name='title')
+    label Content
+    textarea(name='content')
+    br
+    input(type='submit')

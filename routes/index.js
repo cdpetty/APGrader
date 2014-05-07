@@ -13,7 +13,9 @@ exports.createRoutes = function(app){
     'instantiate-user': 'all',
     'create-lab': 'all',
     'logout': 'get',
-    'submissions': 'all'
+    'submissions': 'all',
+    'reset-passwords': 'all',
+    'announcements': 'all'
   };
   for (var route in routes){
     exports[route] = require('./' + route);
@@ -35,5 +37,5 @@ exports.createRoutes = function(app){
 exports.index = function(req,res){
     //var express = require('express');
     //var app = express();
-    res.render('index', {name: req.session.name});
+    res.render('index', {name: req.session.name, admin: req.session.admin});
 };

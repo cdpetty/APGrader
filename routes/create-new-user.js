@@ -46,7 +46,16 @@ module.exports = function (req, res) {
             var folder_path = path.join(__dirname, '../storage'); 
             util.createDir(folder_path, saved.dirname, function(err){
               if (err) res.send('Error creating directory: ' + err);
-              else res.send('New user: ' + saved.username + ' created with password: ' + saved.password);
+              else{
+                req.session.loggedIn = true;
+                req.session.user_id = saved._id;
+                req.session.username = saved.username;
+                req.session.dirname = saved.dirname;
+                req.session.admin = saved.admin;
+                req.session.name = capitalizeName(saved.first) + " " + capitalizeName(saved.last);
+                res.redirect('/');
+                //res.send('New user: ' + saved.username + ' created with password: ' + saved.password);
+              }
             });
           }
         });

@@ -8,16 +8,32 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nav.css')
   body
+    if name
+      div(id='logged-in') Logged in as: #{name}
     block name
     h1= 'AP Grader'
     div(id='cssmenu')
       ul
         li(class='' id='forl')
           a(href='/') Home
-        li(class='')
-          a(href='/upload') Upload
-        li(class='')
-          a(href='/submissions') Submissions
+        if !admin
+          li(class='')
+            a(href='/upload') Upload
+        if !admin
+          li(class='')
+            a(href='/submissions') Submissions
+        if admin
+          li(class='has-sub')
+            a(href='#') Admin
+            ul
+              li
+                a(href='/announcements') Announcements
+              li
+                a(href='/create-lab') Create Lab
+              li
+                a(href='#') View All Students
+              li
+                a(href='/reset-passwords') Reset Passwords
         li(class='has-sub last' class='last' id='forl')
           a(href='#') Account
           ul
@@ -25,6 +41,8 @@ html
               a(href='/login' class='right') Log In
             li()
               a(href='/logout' class='right') Log Out
+            li
+              a(href='reset-passwords' class='right') Set Password
             li(class='last')
               a(href='create-new-user' class='right') Sign Up
     block content

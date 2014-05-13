@@ -9,7 +9,7 @@ exports.createRoutes = function(app){
     'login': 'all',
     'create-new-user':'all',
     'upload': 'all',
-    'list-users': 'all',
+    'query-users': 'all',
     'new-students': 'all',
     'instantiate-user': 'all',
     'create-lab': 'all',
@@ -39,7 +39,7 @@ exports.index = function(req,res){
   //var express = require('express');
   //var app = express();
   announcements.find({}, function(err, found){
-    res.render('index', {name: req.session.name, admin: req.session.admin, Announcements: found});
+    res.render('index', {name: req.session.name, admin: req.session.admin, Announcements: found.reverse()});
   });
   //res.render('index', {name: req.session.name, admin: req.session.admin});
 };

@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 var announcementsSchema = Schema({
   title: String,
   content: String,
-  date: Date
+  date: String
 });
 var announcements = mongoose.model('announcements', announcementsSchema);
 

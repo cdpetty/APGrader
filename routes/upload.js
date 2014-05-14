@@ -43,6 +43,7 @@ module.exports = function(req,res){
                     new_lab_submission.lab_id = foundLab._id;
                     new_lab_submission.MOS = "";
                     new_lab_submission.attempt = 1;
+                    new_lab_submission.correct = false;
                     new_lab_submission.save(function(err,saved){
                       if (err) res.send(err);
                       else{

@@ -53,19 +53,13 @@ module.exports = function (req, res) {
                 //req.session.name = capitalizeName(saved.first) + " " + capitalizeName(saved.last);
                 res.redirect('/');
                 //res.send('New user: ' + saved.username + ' created with password: ' + saved.password);
-              }
             });
           }
         });
       }
     });
-    
   }
   else {
-<<<<<<< HEAD
-    res.render('create-new-user');
-=======
     res.render('create-new-user', {name: req.session.name, admin: req.session.admin});
->>>>>>> e55e9304ef086016e50426b06a4f1f4adc5fb8bb
   }
 };

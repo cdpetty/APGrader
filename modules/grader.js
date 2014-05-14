@@ -6,12 +6,17 @@ var exec = require('child_process').exec,
 module.exports.execute = function(filename, dirname, callback){
   var folder_path = path.join(__dirname, '../storage/' + dirname)
   var type = getLanguage(filename);
-  if (type === 'python') executePython(folder_path, filename, function(err, stdout, stderr){
-    
-  });
+  if (type === 'python') executePython(folder_path, filename, callback);
   else if (type === 'java') executeJava(folder_path, filename, callback);
   else if (type === 'cpp') executeCPlusPlus(folder_path, filename, callback);
 };  
+
+function diff (err, stdout, stderr, folder_path, callback){
+  fs.writeFile(folder_path, data, function(err){
+    if (err) callback(err);
+    else callback(err, file);
+  });
+}
 
 function getLanguage(filename){
   filename_split = filename.split('.');
@@ -29,7 +34,7 @@ function executeJava(folder_path, filename, callback){
       var run_command = 'java -cp ' + path.join(folder_path, rfilename) + ' > ';
       exec(run_command, function(err, stdout, stderr){
         if (err) callback(err);
-        else callback(err, stdout, stderr);
+        else diff(err, stdout, stderr, folder_path, callback);
       });
     }
   });
@@ -39,8 +44,7 @@ function executePython(folder_path, filename, callback){
   var run_command = 'python ' + folder_path + '/' + filename;
   exec(run_command, function(err, stdout, stderr){
     if (err) callback(err);
-    else callback(err, stdout, stderr);
-  });
+    else diff(err, stdout, stderr, folder_path, callback);
 }
 
 function executeCPlusPlus(folder_path, filename, callback){
@@ -51,7 +55,7 @@ function executeCPlusPlus(folder_path, filename, callback){
       var run_command = folder_path + '/./a.out';
       exec(run_command, function(err, stdout, stderr){
         if (err) callback(err);
-        else callback(err, stdout, stderr);
+        else diff(err, stdout, stderr, folder_path, callback);
       });
     }
   });

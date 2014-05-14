@@ -1,6 +1,10 @@
 /* Login */
 var users = require('../models/users');
 
+function capitalizeName(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 module.exports = function (req, res) {
   //If user is logging in
   if(req.body.username && req.body.password){
@@ -11,17 +15,20 @@ module.exports = function (req, res) {
       if (err)
         res.send(err);
       if (found){
+
         req.session.user_id = found._id;
         req.session.username = found.username;
         req.session.dirname = found.dirname;
-        app.locals.name = found.first + " " + first.last;
+        req.session.admin = found.admin;
+        req.session.name = capitalizeName(found.first) + " " + capitalizeName(found.last);
         res.redirect('/');
       }
       else{
-        res.redirect('/create-new-user');
+        res.render('login', {name: req.session.name, error: 'Incorrect username/password combination'});
+        //res.redirect('/create-new-user');
       }
     });
   }
   else
-    res.render('login', {});
+    res.render('login', {name: req.session.name});
 };

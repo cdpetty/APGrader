@@ -2,17 +2,21 @@
 /*
  * GET home page.
  */
+announcements = require('../models/announcements');
 
 exports.createRoutes = function(app){
   var routes = {
     'login': 'all',
     'create-new-user':'all',
     'upload': 'all',
-    'list-users': 'all',
+    'query-users': 'all',
     'new-students': 'all',
     'instantiate-user': 'all',
     'create-lab': 'all',
-    //'initialize': 'all'
+    'logout': 'get',
+    'submissions': 'all',
+    'reset-passwords': 'all',
+    'announcements': 'all'
   };
   for (var route in routes){
     exports[route] = require('./' + route);
@@ -32,5 +36,10 @@ exports.createRoutes = function(app){
 };
 
 exports.index = function(req,res){
-    res.render('index');
+  //var express = require('express');
+  //var app = express();
+  announcements.find({}, function(err, found){
+    res.render('index', {name: req.session.name, admin: req.session.admin, Announcements: found.reverse()});
+  });
+  //res.render('index', {name: req.session.name, admin: req.session.admin});
 };

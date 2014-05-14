@@ -3,13 +3,13 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-    routes = require('./routes'),
-    http = require('http'),
-    path = require('path'),
-    restrict = require('./middleware/restrict'),
-    mongoose = require('mongoose'),
-    app = express();
+  var express = require('express'),
+  routes = require('./routes'),
+  http = require('http'),
+  path = require('path'),
+  restrict = require('./middleware/restrict'),
+  mongoose = require('mongoose'),
+  app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -20,7 +20,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.cookieParser('#secret'));
 app.use(express.cookieSession());
-app.use(restrict());  //personal middleware
+//app.use(restrict());  //personal middleware
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -22,7 +22,7 @@ module.exports = function(req,res){
               else{
                 console.log("3");
                 //GET MOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-                db.submissions.findOne({name: req.body.lab_name, user: req.session._id}, function(err, foundSubmission){
+                db.submissions.findOne({labname: req.body.lab_name, user: req.session._id}, function(err, foundSubmission){
                   if (err) res.send(err);
                   else if (foundSubmission){
                     console.log("4");
@@ -34,7 +34,7 @@ module.exports = function(req,res){
                   else{
                     console.log("5");
                     new_lab_submission = new db.submissions();
-                    new_lab_submission.name = req.body.lab_name;
+                    new_lab_submission.labname = req.body.lab_name;
                     new_lab_submission.stdout = stdout;
                     new_lab_submission.stderr = stderr;
                     new_lab_submission.filename = req.files.file.name;
@@ -45,7 +45,12 @@ module.exports = function(req,res){
                     new_lab_submission.attempt = 1;
                     new_lab_submission.save(function(err,saved){
                       if (err) res.send(err);
-                      else res.send("Submission saved: <br> STDOUT:" + stdout + "<br>STDERR:" + stderr);
+                      else{
+                          db.labs.find({}, function(err, found){
+                          res.render('upload', {message: 'Uploaded with output:', output: stdout, labs: found, name: req.session.name});
+                          //res.send("Submission saved: <br> STDOUT:" + stdout + "<br>STDERR:" + stderr);
+                          });
+                      }
                     });
                   }
                 });
@@ -58,7 +63,7 @@ module.exports = function(req,res){
   }
   else{
     db.labs.find({}, function(err, found){
-      res.render('upload', {labs: found});
+      res.render('upload', {labs: found, name: req.session.name});
     });
   }
 };

@@ -1,5 +1,5 @@
 var users = require('../models/users'),
-  possibilities = ['teacher', 'period', 'grade_level', 'class'];
+  possibilities = ['teacher', 'period', 'grade', 'class'];
 
 module.exports = function(req,res){
   //if client wants to search users
@@ -21,7 +21,7 @@ module.exports = function(req,res){
     });
   }
   else{
-    res.render('list-users');
+    res.render('query-users');
   }
 };
 

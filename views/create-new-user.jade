@@ -1,30 +1,48 @@
 extends layout
+block name 
+  if name
+    div(id='logged-in') Logged in as: #{name}
 block content
   br
-  form(class='bootstrap-frm')
+  form(method='post' class='bootstrap-frm')
     h1 Account Signup
       span Please complete each input field
     label First Name:
-    input(type='text' required)
+    input(name='first' type='text' required)
     label Last Name:
-    input(type='text' required)
+    input(name='last' type='text' required)
     label Period:
-    select(required)
-      option(value='1st') 1st
-      option(value='2nd') 2nd
-      option(value='3rd') 3rd
-      option(value='4th') 4th
-      option(value='5th') 5th
-      option(value='6th') 6th
-      option(value='7th') 7th
-      option(value='8th') 8th
+    select(required, name='period')
+      option(value='1') 1st
+      option(value='2') 2nd
+      option(value='3') 3rd
+      option(value='4') 4th
+      option(value='5') 5th
+      option(value='6') 6th
+      option(value='7') 7th
+      option(value='8') 8th
+    label Teacher:
+    select(required, name='teacher')
+      option(value='Stephens') Stephens
+      option(value='Mueller') Mueller
     label Class Name:
-    input(type='text' required)
+    select(required, name='class')
+        option(value='AP Computer Science') AP Computer Science
+        option(value='Computer Programming') Computer Programming
+        option(value='Advanced Computer Programming') Advanced Computer Programming
+        option(value='Web Apps') Web Apps
+        option(value='Digital Electronics') Digital Electronics
+    label Grade:
+    select(required, name='grade')
+      option(value='9') 9th
+      option(value='10') 10th
+      option(value='11') 11th
+      option(value='12') 12th
     label Username:
-    input(type='text' required)
-    label Signup Code:
-    input(type='text' required)
+    input(name='username' type='text' required)
     label Password
-    input(type='password' required)
+    input(name='password' type='password' required)
+    label Signup Code:
+    input(name='signupCode' type='text' required)
     br
     input(type='submit')

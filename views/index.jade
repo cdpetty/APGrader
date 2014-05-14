@@ -1,6 +1,12 @@
 extends layout
 block content
-  div(id='announcements')
+  h2(id='announce') Announcements:
+  each announcement in Announcements
+    div(class='announcements')
+      p #{announcement.title} 
+        span #{announcement.date}
+        div #{announcement.content}
+ // div(class='announcements')
     p This week in AP...
     p Announcement
     p Announcement

@@ -17,16 +17,16 @@ module.exports = function(req, res) {
       if (err) res.send(err);
       //Create actual files and folders
       util.createDir(dirpath, labName, function(err){
-        if (err) res.send(err);
+        if (err) res.render('create_lab', {name: req.session.name, admin: req.session.admin, error: err});
         else{
           if (req.files.runner){
             var new_dirpath = path.join(dirpath, labName);
             util.save(req.files.output, new_dirpath, labName + '.out', function(err){
-              if (err) res.send("Error saving output file: " + err);
+              if (err) res.render('create_lab', {name: req.session.name, admin: req.session.admin, error: "Error saving output file: "});
               util.save(req.files.runner, new_dirpath, req.files.runner.name, function(err){
-                if (err) res.send("Error saving runner file: " + err);
+                if (err) res.render('create_lab', {name: req.session.name, admin: req.session.admin, error: "Error saving runner file: "});
                 else {
-                  res.send("Successfully uploaded lab files");
+                  res.render('create_lab', {name: req.session.name, admin: req.session.admin, message: "Successfully uploaded lab files"});
                 }
               });
             });

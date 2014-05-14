@@ -42,12 +42,14 @@ module.exports = function(req,res){
                       new_lab_submission.date = new Date();
                       new_lab_submission.lab_id = foundLab._id;
                       new_lab_submission.MOS = "";
+                      if (diff_stdout) new_lab_submission.correct = false;
+                      else new_lab_submission.correct = true;
                       new_lab_submission.attempt = 1;
                       new_lab_submission.save(function(err,saved){
                         if (err) res.send(err);
                         else{
                             db.labs.find({}, function(err, found){
-                            res.render('upload', {message: 'Uploaded with output:', output: stdout, labs: found, name: req.session.name});
+                            res.render('upload', {message: 'Uploaded with output:', output: stdout + ' ' + new_lab_submission.correct, labs: found, name: req.session.name});
                             //res.send("Submission saved: <br> STDOUT:" + stdout + "<br>STDERR:" + stderr);
                             });
                         }

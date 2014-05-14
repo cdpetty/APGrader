@@ -1,1 +1,1 @@
-print 'Asdf  a             '
+print 'asdf             '

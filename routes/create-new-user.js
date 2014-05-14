@@ -51,7 +51,7 @@ module.exports = function (req, res) {
                 req.session.dirname = saved.dirname;
                 req.session.admin = saved.admin;
                 //req.session.name = capitalizeName(saved.first) + " " + capitalizeName(saved.last);
-                res.redirect('/');
+                res.redirect('/login');
                 //res.send('New user: ' + saved.username + ' created with password: ' + saved.password);
             });
           }

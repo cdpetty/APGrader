@@ -65,7 +65,12 @@ h3 {
   color: red;
 }
 
-
+footer {
+  margin-top: -10px;
+  float: right;
+  font-family: Arial;
+  font-size: 9px;
+}
 
 
 /* #### bootstrap Form #### */
@@ -144,14 +149,14 @@ h3 {
 .bootstrap-frm textarea{
     height:100px;
 }
-.bootstrap-frm .button {
+.bootstrap-frm input[type="submit"], .bootstrap-frm.button {
     background: #FFF;
     border: 1px solid #CCC;
-    padding: 10px 25px 10px 25px;
+    padding: 8px 17px 8px 17px;
     color: #333;
     border-radius: 4px;
 }
-.bootstrap-frm .button:hover {
+.bootstrap-frm input[type="submit"]:hover, .bootstrap-frm .button:hover {
     color: #333;
     background-color: #EBEBEB;
     border-color: #ADADAD;

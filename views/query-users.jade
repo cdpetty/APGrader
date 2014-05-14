@@ -6,10 +6,12 @@ block content
     h1 Students
     label Teacher:
     select(name='teacher')
+      option(value='-1') Any
       option(value='Stephens') Stephens
       option(value='Mueller') Mueller
     label Period:
     select(name='period')
+      option(value='-1') Any
       option(value='1') 1
       option(value='2') 2
       option(value='3') 3
@@ -20,15 +22,36 @@ block content
       option(value='8') 8
     label Grade:
     select(name='grade')
+      option(value='-1') Any
       option(value='9') 9th
       option(value='10') 10th
       option(value='11') 11th
       option(value='12') 12th
     label Class:
     select(name='class')
+      option(value='-1') Any
       option(value='AP Computer Science') AP Computer Science
       option(value='Web Apps') Web Apps
       option(value='Advanced Computer Programming') Advanced Computer Programming
       option(value='Digital Electronics') Digital Electronics
     br
     input(type='submit')
+    
+  if users  
+    table(cellspacing='0')
+      tr
+        th First Name
+        th Last Name
+        th Period
+        th Grade Level
+        th Teacher
+        th Class
+      each user in users
+        tr
+          td #{user.first}
+          td #{user.last}
+          td #{user.period}
+          td #{user.grade}
+          td #{user.teacher}
+          td #{user.class}
+  br

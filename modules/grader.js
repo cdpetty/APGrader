@@ -45,6 +45,7 @@ function executePython(folder_path, filename, callback){
   exec(run_command, function(err, stdout, stderr){
     if (err) callback(err);
     else diff(err, stdout, stderr, folder_path, callback);
+  });
 }
 
 function executeCPlusPlus(folder_path, filename, callback){

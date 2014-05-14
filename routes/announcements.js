@@ -12,7 +12,10 @@ function getDate(){
         formatedDate += '12:';
     else
       formatedDate += (unformatedDate.getHours()%12) + ':';
-    formatedDate += unformatedDate.getMinutes();
+    if(unformatedDate.getMinutes() < 10)
+      formatedDate += '0' + unformatedDate.getMinutes();
+    else
+      formatedDate += unformatedDate.getMinutes();
     if (unformatedDate.getHours() >=11) formatedDate += 'pm';
     else formatedDate += 'am';
     return formatedDate;

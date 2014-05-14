@@ -6,6 +6,7 @@ module.exports = function(req,res){
   if ( checkBody(req) ){
     //create search query
     var query = getQuery(req);
+    console.log('query: ', query);
     var a = '';
     //search database for users
     users.find(query, function(err, found){
@@ -17,18 +18,20 @@ module.exports = function(req,res){
           a += JSON.stringify(user);
         }
       });
-      res.send(a);
+      res.render('query-users', {name: req.session.name, admin: req.session.admin, users: found});
+      //res.send(a);
     });
   }
   else{
-    res.render('query-users');
+    console.log('no request');
+    res.render('query-users', {name: req.session.name, admin: req.session.admin});
   }
 };
 
 function getQuery(request){
   var query = {};
   possibilities.forEach(function(possibility){
-    if ( request.param(possibility) ) query[possibility] = request.param(possibility);
+    if ( request.param(possibility) != -1 ) query[possibility] = request.param(possibility);
   });
   return query;
 };

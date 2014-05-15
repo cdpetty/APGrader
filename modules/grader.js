@@ -53,8 +53,10 @@ function executeJava(folder_path, filename, labname, callback){
 };
 
 function executePython(folder_path, filename, labname, callback){
+  console.log('Executing python');
   var run_command = 'python ' + folder_path + '/' + filename;
   exec(run_command, function(err, stdout, stderr){
+    console.log('run_command: ', run_command);
     if (err) callback(err);
     else diff(err, stdout, stderr, folder_path, labname, callback);
   });

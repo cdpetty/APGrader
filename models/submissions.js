@@ -8,12 +8,13 @@ var submissionsSchema = Schema({
   stdout: String,
   stderr: String,
   lab_id: ObjectId,
-  date: Date,
+  date: String,
   MOS: Mixed,
   labname: String,
   filename: String,
   user: ObjectId,
-  attempt: Number
+  attempt: Number,
+  correct: Boolean
 });
 var submissions = mongoose.model('submissions', submissionsSchema);
 

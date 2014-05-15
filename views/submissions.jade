@@ -6,11 +6,15 @@ block content
       each submission in submissions
         div 
           input(type='checkbox' name='selection' value='#{submission.filename}')
-          strong Lab: #{submission.labname}
+          strong Lab: #{submission.labname} &nbsp
+          if submission.correct
+            img(src='/images/check_small.png')
+          else
+            img(src='/images/x_small.png')
           div(class='labAttributes')
             div File Name: #{submission.filename}
             div Upload Date: #{submission.date}
             div Output: #{submission.stdout}
-            div Correct:
+            
             br
       input(type='submit' value='Download')

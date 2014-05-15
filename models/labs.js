@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var labsSchema = Schema({
   name: String,
   runner_name: String,
-  date: Date,
+  date: String,
   correct: false
 });
 var labs = mongoose.model('labs', labsSchema);

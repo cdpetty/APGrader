@@ -17,13 +17,20 @@ function diff (err, stdout, stderr, folder_path, labname, callback){
   if (err) callback(err, stdout, stderr);
   else if (stderr) callback(err, stdout, stderr);
   else {
+    console.log('doing the diff!');
     fs.writeFile(path.join(folder_path, 'tmp_diff_file'), stdout, function(err){
+      console.log('stdout: ', stdout);
       if (err) callback(err);
       else {
-        var diff_command = 'diff -b -i ' + path.join(__dirname, '../labs', labname, labname + '.out') + ' ' + path.join(folder_path, 'tmp_diff_file');
+        var expectedPath = path.join(__dirname, '../labs', labname, labname + '.out');
+        console.log(expectedPath);
+        var diff_command = 'diff -b -i ' + expectedPath + ' ' + path.join(folder_path, 'tmp_diff_file');
         exec(diff_command, function(diff_err, diff_stdout, diff_stderr){
-          console.log('ERROR RUNNING THE DIFF COMMAND:', err);
-          callback(err, stdout, stderr, diff_stdout);
+          if(diff_err) console.log('ERROR RUNNING THE DIFF COMMAND:', diff_err);
+          fs.unlink(path.join(folder_path, 'tmp_diff_file'), function(err){
+            if (err) console.log(err);
+            else callback(err, stdout, stderr, diff_stdout);
+          });
         });
       }
     });

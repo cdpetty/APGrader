@@ -36,6 +36,16 @@ block content
       option(value='Digital Electronics') Digital Electronics
     br
     input(type='submit' value='Submit')
+  
+  form(class='bootstrap-frm' meth='get')
+    h1 Labs
+    label Labs:
+    select(name='labs')
+      option(value='-1') All
+      each lab in labs
+        option(value='#{lab.name}') #{lab.name}
+    br
+    input(type='submit' value='Submit')
     
   if users  
     table(cellspacing='0')

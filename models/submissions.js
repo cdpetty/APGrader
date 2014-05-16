@@ -14,7 +14,9 @@ var submissionsSchema = Schema({
   filename: String,
   user: ObjectId,
   attempt: Number,
-  correct: Boolean
+  correct: Boolean,
+  first: String,
+  last: String
 });
 var submissions = mongoose.model('submissions', submissionsSchema);
 

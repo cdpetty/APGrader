@@ -21,6 +21,8 @@ module.exports = function (req, res) {
         req.session.dirname = found.dirname;
         req.session.admin = found.admin;
         req.session.name = capitalizeName(found.first) + " " + capitalizeName(found.last);
+        req.session.first = found.first;
+        req.session.last = found.last;
         res.redirect('/');
       }
       else{

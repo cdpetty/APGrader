@@ -12,4 +12,9 @@ block content
     input(type='submit' value='Submit')
     br
     br
-    div #{message} #{output}
+    div #{message} #{output} &nbsp
+      if output
+        if correct
+          img(src='/images/check_small.png')
+        else
+          img(src='/images/x_small.png')

@@ -10,17 +10,51 @@ module.exports = function(req,res){
     console.log('query: ', query);
     var a = '';
     //search database for users
+    var real_found = [];
     users.find(query, function(err, found){
-      console.log(found);
-      found.forEach(function(user){
-        console.log("user:", user);
-        if (err) res.send('Error finding students: ' + err);
-        else{
-          a += JSON.stringify(user);
-        }
-      });
+      //console.log(found);
+      var increment = 0;
+      console.log('Found:', found);
+      if (req.param('lab') !== '-1'){
+        
+        console.log('LAB REQUESTED');
+        found.forEach(function(user){
+          var a = user;
+          real_found.push(a);
+          real_found[increment].asdf = 'asdf';
+          console.log('ASDF:', real_found[increment].asdf);
+          console.log('Increment:', increment);
+          db.submissions.findOne({user: user._id, labname: req.param('lab')}, function(err, found_submission){
+            console.log('Query:', {user: user._id, labname: req.param('lab')}, 'with found:', found_submission)
+            if (err) console.log(err);
+            else if (found_submission){
+              if (found_submission.correct){
+                real_found[increment]['lab_grade'] = 'Complete';
+              }
+              else
+                real_found[increment]['lab_grade'] = 'Incorrect Submission';
+              real_found[increment]['attempt'] = found_submission.attempt;
+            }
+            else {
+              real_found[increment]['lab_grade'] = 'No Submission';
+              real_found[increment]['attempt'] = 0;
+            }
+            increment++;
+            console.log('After labgrade and attempt set:', real_found);
+          });
+
+        });
+      }
+      else{
+        real_found = found;
+      }
       db.labs.find({}, function(err, foundlab){
-        res.render('query-users', {name: req.session.name, admin: req.session.admin, users: found, labs: foundlab});
+        var info = {name: req.session.name, admin: req.session.admin, users: real_found, labs: foundlab};
+        if (req.param('lab'))
+          info.lab_requested = true;
+        else
+          info.lab_requested = false;
+        res.render('query-users', info);
       });
       //res.send(a);
     });
@@ -48,6 +82,8 @@ function checkBody(request){
     if (request.param(requirement)) {
       data_sent = true;
     }
+    if (request.param('lab'))
+      data_sent = true;
   });
   return data_sent;
 };

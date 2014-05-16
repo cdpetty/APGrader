@@ -34,18 +34,23 @@ block content
       option(value='Web Apps') Web Apps
       option(value='Advanced Computer Programming') Advanced Computer Programming
       option(value='Digital Electronics') Digital Electronics
-    br
-    input(type='submit' value='Submit')
-  
-  form(class='bootstrap-frm' meth='get')
-    h1 Labs
-    label Labs:
-    select(name='labs')
+    label Lab:
+    select(name='lab')
       option(value='-1') All
       each lab in labs
         option(value='#{lab.name}') #{lab.name}
     br
     input(type='submit' value='Submit')
+  
+  //form(class='bootstrap-frm' meth='get')
+  //  h1 Labs
+  //  label Labs:
+  //  select(name='labs')
+  //    option(value='-1') All
+  //    each lab in labs
+  //      option(value='#{lab.name}') #{lab.name}
+  //  br
+  //  input(type='submit' value='Submit')
     
   if users  
     table(cellspacing='0')
@@ -56,6 +61,9 @@ block content
         th Grade Level
         th Teacher
         th Class
+        if lab_requested
+          th Lab Submission
+          th # of Attempts
       each user in users
         tr
           td #{user.first}
@@ -64,4 +72,7 @@ block content
           td #{user.grade}
           td #{user.teacher}
           td #{user.class}
+          if user.lab_grade
+            td #{user.lab_grade}
+            td #{user.attempt}
   br
